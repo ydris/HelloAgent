@@ -4,12 +4,17 @@ export default function Home() {
   const [command, setCommand] = useState('');
   const [response, setResponse] = useState('');
 
-  function handleAgentCommand(cmd) {
-    if (cmd === 'say_hello') {
-      return "👋 Hello, World! This is your agent talking";
-    }
-    return "🤖 Sorry, I don’t know that command.";
-  }
+async function handleAgentCommand(cmd) {
+  // Call your backend API
+  const res = await fetch('/api/agent', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt: cmd }),
+  });
+  const data = await res.json();
+  return data.response || data.error || "No response from agent.";
+}
+
 
   function handleSend() {
     setResponse(handleAgentCommand(command.trim()));
