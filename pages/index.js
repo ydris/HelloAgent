@@ -6,7 +6,7 @@ export default function Home() {
 
   function handleAgentCommand(cmd) {
     if (cmd === 'say_hello') {
-      return "👋 Hello, World! This is your agent speaking -can you hear me.";
+      return "👋 Hello, World! This is your agent speaking";
     }
     return "🤖 Sorry, I don’t know that command.";
   }
